@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryPro - Reports & Analytics</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modules/reports.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <!-- Same sidebar as dashboard -->
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>Reports & Analytics</h1>
+                </div>
+                <div class="header-right">
+                    <!-- Same header right as dashboard -->
+                </div>
+            </header>
+
+            <!-- Report Filters -->
+            <div class="report-filters">
+                <div class="filter-group">
+                    <label for="reportType">Report Type</label>
+                    <select id="reportType" class="form-control">
+                        <option value="production">Egg Production</option>
+                        <option value="health">Health & Mortality</option>
+                        <option value="feeding">Feed Consumption</option>
+                        <option value="financial">Financial Performance</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="timePeriod">Time Period</label>
+                    <select id="timePeriod" class="form-control">
+                        <option value="week">Last 7 Days</option>
+                        <option value="month">Last 30 Days</option>
+                        <option value="quarter">Last 3 Months</option>
+                        <option value="year">Last 12 Months</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group custom-range" style="display: none;">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" class="form-control">
+                </div>
+                
+                <div class="filter-group custom-range" style="display: none;">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" class="form-control">
+                </div>
+                
+                <button class="btn btn-primary" id="generateReportBtn">
+                    <span class="material-icons btn-icon">insert_chart</span>
+                    Generate Report
+                </button>
+            </div>
+
+            <!-- Report Visualization -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Egg Production Report</h3>
+                    <div class="card-actions">
+                        <button class="btn-icon" title="Print">
+                            <span class="material-icons">print</span>
+                        </button>
+                        <button class="btn-icon" title="Export">
+                            <span class="material-icons">download</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="report-content">
+                    <div class="chart-container">
+                        <canvas id="productionReportChart"></canvas>
+                    </div>
+                    
+                    <div class="report-summary">
+                        <div class="summary-item">
+                            <h4>Total Eggs</h4>
+                            <div class="summary-value">25,842</div>
+                            <div class="summary-change up">
+                                <span class="material-icons">trending_up</span>
+                                <span>12% from last period</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <h4>Average Daily</h4>
+                            <div class="summary-value">3,692</div>
+                            <div class="summary-change up">
+                                <span class="material-icons">trending_up</span>
+                                <span>5% from last period</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-item">
+                            <h4>Rejection Rate</h4>
+                            <div class="summary-value">2.1%</div>
+                            <div class="summary-change down">
+                                <span class="material-icons">trending_down</span>
+                                <span>0.3% from last period</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Report Data -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Detailed Production Data</h3>
+                    <div class="card-actions">
+                        <button class="btn-icon" title="Refresh">
+                            <span class="material-icons">refresh</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="report-table-container">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Flock ID</th>
+                                <th>Eggs Collected</th>
+                                <th>Good Eggs</th>
+                                <th>Damaged</th>
+                                <th>Rejected</th>
+                                <th>Collection Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-06-15</td>
+                                <td>FL-2023-001</td>
+                                <td>2,150</td>
+                                <td>2,120</td>
+                                <td>22</td>
+                                <td>8</td>
+                                <td>08:30 AM</td>
+                            </tr>
+                            <!-- More rows would be dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/modules/reports.js"></script>
+</body>
+</html>

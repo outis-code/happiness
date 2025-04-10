@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryPro - Breeding Management</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modules/breeding.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <!-- Same sidebar as dashboard -->
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>Breeding & Hatchery Management</h1>
+                </div>
+                <div class="header-right">
+                    <!-- Same header right as dashboard -->
+                </div>
+            </header>
+
+            <!-- Breeding Tabs -->
+            <div class="breeding-tabs">
+                <button class="tab-btn active" data-tab="breeding">Breeding</button>
+                <button class="tab-btn" data-tab="incubation">Incubation</button>
+                <button class="tab-btn" data-tab="hatching">Hatching</button>
+                <button class="tab-btn" data-tab="chicks">Chick Management</button>
+            </div>
+
+            <!-- Breeding Tab Content -->
+            <div class="tab-content active" id="breeding">
+                <div class="breeding-controls">
+                    <button class="btn btn-primary" id="addBreedingBtn">
+                        <span class="material-icons btn-icon">add</span>
+                        Record Breeding
+                    </button>
+                    
+                    <div class="search-filter">
+                        <div class="search-box">
+                            <span class="material-icons">search</span>
+                            <input type="text" placeholder="Search breeding records...">
+                        </div>
+                        <select class="filter-select">
+                            <option>All Statuses</option>
+                            <option>Active</option>
+                            <option>Completed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Breeding Records -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Current Breeding Programs</h3>
+                        <div class="card-actions">
+                            <button class="btn-icon" title="Refresh">
+                                <span class="material-icons">refresh</span>
+                            </button>
+                            <button class="btn-icon" title="Export">
+                                <span class="material-icons">download</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="breeding-table-container">
+                        <table class="breeding-table">
+                            <thead>
+                                <tr>
+                                    <th>Program ID</th>
+                                    <th>Male Breed</th>
+                                    <th>Female Breed</th>
+                                    <th>Start Date</th>
+                                    <th>Eggs Collected</th>
+                                    <th>Fertility Rate</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>BP-2023-001</td>
+                                    <td>Rhode Island Red</td>
+                                    <td>Rhode Island Red</td>
+                                    <td>2023-05-01</td>
+                                    <td>1,250</td>
+                                    <td>92%</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>
+                                        <button class="btn-icon" title="View">
+                                            <span class="material-icons">visibility</span>
+                                        </button>
+                                        <button class="btn-icon" title="Edit">
+                                            <span class="material-icons">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- More rows would be dynamically generated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other tab contents would be here -->
+        </main>
+    </div>
+
+    <!-- Add Breeding Program Modal -->
+    <div class="modal" id="addBreedingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Record New Breeding</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="breedingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maleBreed">Male Breed</label>
+                            <select id="maleBreed" class="form-control" required>
+                                <option value="">Select Male Breed</option>
+                                <option value="rhode-island-red">Rhode Island Red</option>
+                                <option value="leghorn">Leghorn</option>
+                                <option value="plymouth-rock">Plymouth Rock</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="femaleBreed">Female Breed</label>
+                            <select id="femaleBreed" class="form-control" required>
+                                <option value="">Select Female Breed</option>
+                                <option value="rhode-island-red">Rhode Island Red</option>
+                                <option value="leghorn">Leghorn</option>
+                                <option value="plymouth-rock">Plymouth Rock</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="breedingDate">Start Date</label>
+                            <input type="date" id="breedingDate" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maleCount">Number of Males</label>
+                            <input type="number" id="maleCount" class="form-control" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="femaleCount">Number of Females</label>
+                            <input type="number" id="femaleCount" class="form-control" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="breedingLocation">Location</label>
+                            <select id="breedingLocation" class="form-control" required>
+                                <option value="">Select Location</option>
+                                <option value="pen-a">Breeding Pen A</option>
+                                <option value="pen-b">Breeding Pen B</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="breedingNotes">Notes</label>
+                        <textarea id="breedingNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Breeding Program</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/modules/breeding.js"></script>
+</body>
+</html>

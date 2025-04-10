@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryPro - Feeding & Nutrition</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modules/feeding.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">   
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <!-- Same sidebar as dashboard -->
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+
+                
+
+
+
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>Feeding & Nutrition Management</h1>
+                </div>
+                <div class="header-right">
+                    <!-- Same header right as dashboard -->
+                </div>
+            </header>
+
+            <!-- Feeding Controls -->
+            <div class="feeding-controls">
+                <div class="control-group">
+                    <button class="btn btn-primary" id="addFeedBtn">
+                        <span class="material-icons btn-icon">add</span>
+                        Add Feed Stock
+                    </button>
+                    <button class="btn btn-outline" id="scheduleBtn">
+                        <span class="material-icons btn-icon">schedule</span>
+                        Feeding Schedules
+                    </button>
+                </div>
+                
+                <div class="search-filter">
+                    <div class="search-box">
+                        <span class="material-icons">search</span>
+                        <input type="text" placeholder="Search feed records...">
+                    </div>
+                    
+                    <select class="filter-select">
+                        <option value="all">All Feed Types</option>
+                        <option value="starter">Starter Feed</option>
+                        <option value="grower">Grower Feed</option>
+                        <option value="layer">Layer Feed</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Feed Inventory -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Current Feed Inventory</h3>
+                    <div class="card-actions">
+                        <button class="btn-icon" title="Refresh">
+                            <span class="material-icons">refresh</span>
+                        </button>
+                        <button class="btn-icon" title="Export">
+                            <span class="material-icons">download</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="feed-inventory">
+                    <div class="feed-item warning">
+                        <div class="feed-icon">
+                            <span class="material-icons">warning</span>
+                        </div>
+                        <div class="feed-details">
+                            <h4>Layer Mash</h4>
+                            <p>Current Stock: 250 kg</p>
+                            <div class="feed-progress">
+                                <div class="progress-bar" style="width: 15%"></div>
+                            </div>
+                            <p class="feed-alert">Low stock! Reorder now</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feed-item">
+                        <div class="feed-icon">
+                            <span class="material-icons">check_circle</span>
+                        </div>
+                        <div class="feed-details">
+                            <h4>Starter Crumble</h4>
+                            <p>Current Stock: 1,200 kg</p>
+                            <div class="feed-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <p>Last delivery: 5 days ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consumption Records -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Feed Consumption</h3>
+                    <div class="time-filter">
+                        <select>
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>This Month</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="consumption-table-container">
+                    <table class="consumption-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Flock ID</th>
+                                <th>Feed Type</th>
+                                <th>Quantity (kg)</th>
+                                <th>Feeder</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-06-15</td>
+                                <td>FL-2023-001</td>
+                                <td>Layer Mash</td>
+                                <td>85</td>
+                                <td>John Doe</td>
+                                <td>Regular feeding</td>
+                            </tr>
+                            <!-- More rows would be dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Feed Stock Modal -->
+    <div class="modal" id="addFeedModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Feed Stock</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="feedForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="feedType">Feed Type</label>
+                            <select id="feedType" class="form-control" required>
+                                <option value="">Select Feed Type</option>
+                                <option value="starter">Starter Feed</option>
+                                <option value="grower">Grower Feed</option>
+                                <option value="layer">Layer Feed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedQuantity">Quantity (kg)</label>
+                            <input type="number" id="feedQuantity" class="form-control" min="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="feedSupplier">Supplier</label>
+                            <input type="text" id="feedSupplier" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedDate">Delivery Date</label>
+                            <input type="date" id="feedDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedBatch">Batch Number</label>
+                        <input type="text" id="feedBatch" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="feedNotes">Notes</label>
+                        <textarea id="feedNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Feed Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/modules/feeding.js"></script>
+</body>
+</html>   

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryPro - Health Management</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modules/health.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <!-- Same sidebar as dashboard -->
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>Health & Disease Management</h1>
+                </div>
+                <div class="header-right">
+                    <!-- Same header right as dashboard -->
+                </div>
+            </header>
+
+            <!-- Health Tabs -->
+            <div class="health-tabs">
+                <button class="tab-btn active" data-tab="vaccination">Vaccination</button>
+                <button class="tab-btn" data-tab="disease">Disease Log</button>
+                <button class="tab-btn" data-tab="mortality">Mortality</button>
+                <button class="tab-btn" data-tab="treatments">Treatments</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content active" id="vaccination">
+                <div class="tab-controls">
+                    <button class="btn btn-primary" id="addVaccinationBtn">
+                        <span class="material-icons btn-icon">add</span>
+                        Record Vaccination
+                    </button>
+                    <div class="search-filter">
+                        <div class="search-box">
+                            <span class="material-icons">search</span>
+                            <input type="text" placeholder="Search vaccinations...">
+                        </div>
+                        <select class="filter-select">
+                            <option>All Statuses</option>
+                            <option>Upcoming</option>
+                            <option>Completed</option>
+                            <option>Overdue</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Vaccination Calendar -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Vaccination Schedule</h3>
+                        <div class="card-actions">
+                            <button class="btn-icon" title="Print">
+                                <span class="material-icons">print</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-view">
+                        <div class="calendar-header">
+                            <button class="btn-icon">
+                                <span class="material-icons">chevron_left</span>
+                            </button>
+                            <h4>June 2023</h4>
+                            <button class="btn-icon">
+                                <span class="material-icons">chevron_right</span>
+                            </button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-header">Sun</div>
+                            <div class="calendar-day-header">Mon</div>
+                            <div class="calendar-day-header">Tue</div>
+                            <div class="calendar-day-header">Wed</div>
+                            <div class="calendar-day-header">Thu</div>
+                            <div class="calendar-day-header">Fri</div>
+                            <div class="calendar-day-header">Sat</div>
+                            
+                            <!-- Calendar days would be dynamically generated -->
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day">
+                                <div class="day-number">1</div>
+                            </div>
+                            <div class="calendar-day">
+                                <div class="day-number">2</div>
+                            </div>
+                            <div class="calendar-day">
+                                <div class="day-number">3</div>
+                            </div>
+                            <div class="calendar-day">
+                                <div class="day-number">4</div>
+                            </div>
+                            <!-- More days... -->
+                            <div class="calendar-day has-event">
+                                <div class="day-number">15</div>
+                                <div class="calendar-event" data-event="1">
+                                    <span class="event-dot" style="background-color: #4CAF50;"></span>
+                                    <span class="event-title">Newcastle Disease</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Vaccinations -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Upcoming Vaccinations</h3>
+                        <div class="card-actions">
+                            <button class="btn-icon" title="Refresh">
+                                <span class="material-icons">refresh</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="vaccination-list">
+                        <div class="vaccination-item">
+                            <div class="vaccination-date">
+                                <div class="date-day">15</div>
+                                <div class="date-month">Jun</div>
+                            </div>
+                            <div class="vaccination-details">
+                                <h4>Newcastle Disease Vaccine</h4>
+                                <p><strong>Flock:</strong> FL-2023-001 (Rhode Island Red)</p>
+                                <p><strong>Location:</strong> Barn A</p>
+                                <p><strong>Administered by:</strong> Dr. Smith</p>
+                            </div>
+                            <div class="vaccination-actions">
+                                <button class="btn btn-outline btn-sm">Mark Complete</button>
+                            </div>
+                        </div>
+                        <!-- More vaccination items would be dynamically generated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other tab contents would be here -->
+        </main>
+    </div>
+
+    <!-- Add Vaccination Modal -->
+    <div class="modal" id="addVaccinationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Record Vaccination</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="vaccinationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vaccineType">Vaccine Type</label>
+                            <select id="vaccineType" class="form-control" required>
+                                <option value="">Select Vaccine</option>
+                                <option value="newcastle">Newcastle Disease</option>
+                                <option value="avian-flu">Avian Influenza</option>
+                                <option value="mareks">Marek's Disease</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccineDate">Vaccination Date</label>
+                            <input type="date" id="vaccineDate" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vaccineFlock">Flock</label>
+                            <select id="vaccineFlock" class="form-control" required>
+                                <option value="">Select Flock</option>
+                                <option value="FL-2023-001">FL-2023-001 (Rhode Island Red)</option>
+                                <option value="FL-2023-002">FL-2023-002 (Leghorn)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaccineMethod">Method</label>
+                            <select id="vaccineMethod" class="form-control" required>
+                                <option value="">Select Method</option>
+                                <option value="water">Drinking Water</option>
+                                <option value="injection">Injection</option>
+                                <option value="spray">Spray</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vaccineAdmin">Administered By</label>
+                        <input type="text" id="vaccineAdmin" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vaccineNotes">Notes</label>
+                        <textarea id="vaccineNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Vaccination Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/modules/health.js"></script>
+</body>
+</html>

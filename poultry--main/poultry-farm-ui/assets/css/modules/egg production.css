@@ -1,0 +1,135 @@
+/* Egg Production Specific Styles */
+.production-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.date-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.date-filter label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.date-filter input {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.daily-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.summary-icon {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.summary-card:nth-child(2) .summary-icon {
+    background-color: #FFF3E0;
+    color: var(--warning-color);
+}
+
+.summary-card:nth-child(3) .summary-icon {
+    background-color: #FFEBEE;
+    color: var(--error-color);
+}
+
+.summary-card:nth-child(4) .summary-icon {
+    background-color: #E8F5E9;
+    color: var(--success-color);
+}
+
+.summary-content h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.production-table-container {
+    overflow-x: auto;
+}
+
+.production-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.production-table th {
+    background-color: var(--light-gray);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.production-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.production-table tr:last-child td {
+    border-bottom: none;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .production-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .daily-summary {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .daily-summary {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,126 @@
+/* Feeding & Nutrition Specific Styles */
+.feeding-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.control-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.feed-inventory {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.feed-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.feed-item.warning {
+    border-left-color: var(--warning-color);
+}
+
+.feed-icon {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.feed-item.warning .feed-icon {
+    color: var(--warning-color);
+}
+
+.feed-details {
+    flex: 1;
+}
+
+.feed-details h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feed-details p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.feed-alert {
+    color: var(--warning-color) !important;
+    font-weight: 500;
+}
+
+.feed-progress {
+    height: 8px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    margin: 0.8rem 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.feed-item.warning .progress-bar {
+    background-color: var(--warning-color);
+}
+
+.consumption-table-container {
+    overflow-x: auto;
+}
+
+.consumption-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.consumption-table th {
+    background-color: var(--light-gray);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.consumption-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.consumption-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feeding-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .control-group {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .feed-inventory {
+        grid-template-columns: 1fr;
+    }
+}

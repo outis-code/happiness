@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoultryPro - Egg Production</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modules/egg-production.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <!-- Same sidebar as dashboard -->
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>Egg Production Tracking</h1>
+                </div>
+                <div class="header-right">
+                    <!-- Same header right as dashboard -->
+                </div>
+            </header>
+
+            <!-- Production Controls -->
+            <div class="production-controls">
+                <button class="btn btn-primary" id="recordProductionBtn">
+                    <span class="material-icons btn-icon">add</span>
+                    Record Daily Production
+                </button>
+                
+                <div class="date-filter">
+                    <label for="productionDate">Select Date:</label>
+                    <input type="date" id="productionDate" value="2023-06-15">
+                </div>
+            </div>
+
+            <!-- Daily Summary -->
+            <div class="daily-summary">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <span class="material-icons">egg</span>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Total Eggs Collected</h3>
+                        <div class="summary-value">3,856</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <span class="material-icons">broken_image</span>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Cracked/Damaged</h3>
+                        <div class="summary-value">42</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <span class="material-icons">close</span>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Rejected Eggs</h3>
+                        <div class="summary-value">18</div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <span class="material-icons">check_circle</span>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Good Eggs</h3>
+                        <div class="summary-value">3,796</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Production Details -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Production Details</h3>
+                    <div class="card-actions">
+                        <button class="btn-icon" title="Print">
+                            <span class="material-icons">print</span>
+                        </button>
+                        <button class="btn-icon" title="Export">
+                            <span class="material-icons">download</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="production-table-container">
+                    <table class="production-table">
+                        <thead>
+                            <tr>
+                                <th>Flock ID</th>
+                                <th>Breed</th>
+                                <th>Age (weeks)</th>
+                                <th>Eggs Collected</th>
+                                <th>Good Eggs</th>
+                                <th>Damaged</th>
+                                <th>Rejected</th>
+                                <th>Collection Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>FL-2023-001</td>
+                                <td>Rhode Island Red</td>
+                                <td>25</td>
+                                <td>2,150</td>
+                                <td>2,120</td>
+                                <td>22</td>
+                                <td>8</td>
+                                <td>08:30 AM</td>
+                            </tr>
+                            <!-- More rows would be dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Production Trends -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Weekly Production Trend</h3>
+                    <div class="time-filter">
+                        <select>
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>This Month</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="productionTrendChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Record Production Modal -->
+    <div class="modal" id="recordProductionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Record Daily Production</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productionForm">
+                    <div class="form-group">
+                        <label for="collectionDate">Collection Date</label>
+                        <input type="date" id="collectionDate" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="flockSelection">Flock</label>
+                            <select id="flockSelection" class="form-control" required>
+                                <option value="">Select Flock</option>
+                                <option value="FL-2023-001">FL-2023-001 (Rhode Island Red)</option>
+                                <option value="FL-2023-002">FL-2023-002 (Leghorn)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="collectionTime">Collection Time</label>
+                            <input type="time" id="collectionTime" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="totalEggs">Total Eggs Collected</label>
+                            <input type="number" id="totalEggs" class="form-control" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="goodEggs">Good Eggs</label>
+                            <input type="number" id="goodEggs" class="form-control" min="0" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="damagedEggs">Damaged Eggs</label>
+                            <input type="number" id="damagedEggs" class="form-control" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="rejectedEggs">Rejected Eggs</label>
+                            <input type="number" id="rejectedEggs" class="form-control" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productionNotes">Notes</label>
+                        <textarea id="productionNotes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Production Record</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/modules/egg-production.js"></script>
+</body>
+</html>
